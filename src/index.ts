@@ -3,6 +3,8 @@ import { getTdjson } from 'prebuilt-tdlib'
 import type * as Td from 'tdlib-types';
 import { createInterface } from "readline/promises";
 import { stdin, stdout } from 'process';
+import { readFile } from 'fs/promises';
+import spammer from './spammer';
 
 // import TDLib types:
 // import type * as Td from 'tdlib-types'
@@ -26,12 +28,12 @@ async function main() {
         output: stdout,
         input: stdin
     })
-    const query = await rl.question("Insert query string:");
     await client.login()
 
 
-    const publicSearchRes = await client.invoke({ _: "searchPublicChats",query });
+    const publicSearchRes = await client.invoke({ _: "getChats",limit: 300 });
     console.log("total results:", publicSearchRes.total_count);
+    const spamMessage = await readFile(__dirname + '/spam_template.txt', 'utf8');
 
     for (const chat of publicSearchRes.chat_ids) {
         try {
@@ -43,8 +45,10 @@ async function main() {
             if(chatInfo.type._ == "chatTypeSupergroup") {
                 
                 if(!chatInfo.type.is_channel && chatInfo.permissions.can_send_basic_messages) {
-                    console.log("Chat is a group, let's join");
-                   await client.invoke({_: "joinChat", chat_id: chat });
+                    console.log(`Spamming in supergroup: ${chatInfo.title}`);
+                    await spammer(client, chatInfo.id, spamMessage);
+
+                   
                     //wait 300 seconds after join
                    await new Promise(resolve => setTimeout(resolve, 1000)); // 5 minutes
                     
@@ -52,8 +56,8 @@ async function main() {
             }
             if(chatInfo.type._ == "chatTypeBasicGroup") {
                 console.log(chatInfo.permissions.can_send_basic_messages);
-                console.log("Chat is a basic group, let's join");
-                await client.invoke({_: "joinChat", chat_id: chat });
+                console.log(`Spamming in basic group: ${chatInfo.title}`);
+                await spammer(client, chatInfo.id, spamMessage);
                 await new Promise(resolve => setTimeout(resolve, 1000)); // 5 minutes
                 
             }
