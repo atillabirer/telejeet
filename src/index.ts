@@ -6,6 +6,7 @@ import { stdin, stdout } from 'process';
 import { readFile } from 'fs/promises';
 import spammer from './spammer';
 import spam_template from "./spam_template";
+import joiner from './joiner';
 
 // import TDLib types:
 // import type * as Td from 'tdlib-types'
@@ -62,7 +63,7 @@ async function main() {
 
                 if (!chatInfo.type.is_channel && chatInfo.permissions.can_send_basic_messages) {
                     console.log(`Spamming in supergroup: ${chatInfo.title}`);
-                    await spammer(client, chatInfo.id, spamMessage);
+                    await joiner(client, chatInfo.id, spamMessage);
 
 
                     //wait 300 seconds after join
@@ -73,7 +74,7 @@ async function main() {
             if (chatInfo.type._ == "chatTypeBasicGroup") {
                 console.log(chatInfo.permissions.can_send_basic_messages);
                 console.log(`Spamming in basic group: ${chatInfo.title}`);
-                await spammer(client, chatInfo.id, spamMessage);
+                await joiner(client, chatInfo.id, spamMessage);
                 await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
 
             }

@@ -40,8 +40,8 @@ const tdl = __importStar(require("tdl"));
 const prebuilt_tdlib_1 = require("prebuilt-tdlib");
 const promises_1 = require("readline/promises");
 const process_1 = require("process");
-const spammer_1 = __importDefault(require("./spammer"));
 const spam_template_1 = __importDefault(require("./spam_template"));
+const joiner_1 = __importDefault(require("./joiner"));
 // import TDLib types:
 // import type * as Td from 'tdlib-types'
 tdl.configure({ tdjson: (0, prebuilt_tdlib_1.getTdjson)() });
@@ -70,7 +70,7 @@ async function main() {
     else {
         queryString = "";
     }
-    const publicSearchRes = chatSearchChoice === "1" ? await client.invoke({ _: "getChats", limit: 300 }) :
+    const publicSearchRes = chatSearchChoice === "2" ? await client.invoke({ _: "getChats", limit: 300 }) :
         await client.invoke({ _: "searchPublicChats", query: queryString });
     console.log("total results:", publicSearchRes.total_count);
     const spamMessage = spam_template_1.default;
@@ -83,7 +83,7 @@ async function main() {
             if (chatInfo.type._ == "chatTypeSupergroup") {
                 if (!chatInfo.type.is_channel && chatInfo.permissions.can_send_basic_messages) {
                     console.log(`Spamming in supergroup: ${chatInfo.title}`);
-                    await (0, spammer_1.default)(client, chatInfo.id, spamMessage);
+                    await (0, joiner_1.default)(client, chatInfo.id, spamMessage);
                     //wait 300 seconds after join
                     await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
                 }
@@ -91,7 +91,7 @@ async function main() {
             if (chatInfo.type._ == "chatTypeBasicGroup") {
                 console.log(chatInfo.permissions.can_send_basic_messages);
                 console.log(`Spamming in basic group: ${chatInfo.title}`);
-                await (0, spammer_1.default)(client, chatInfo.id, spamMessage);
+                await (0, joiner_1.default)(client, chatInfo.id, spamMessage);
                 await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
             }
         }
