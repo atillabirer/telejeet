@@ -45,7 +45,7 @@ async function main() {
 
 
 
-    const publicSearchRes = chatSearchChoice === "1" ? await client.invoke({ _: "getChats", limit: 300 }) :
+    const publicSearchRes = chatSearchChoice === "2" ? await client.invoke({ _: "getChats", limit: 300 }) :
         await client.invoke({ _: "searchPublicChats", query: queryString });
 
     console.log("total results:", publicSearchRes.total_count);
@@ -66,7 +66,7 @@ async function main() {
 
 
                     //wait 300 seconds after join
-                    await new Promise(resolve => setTimeout(resolve, 1000)); // 5 minutes
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
 
                 }
             }
@@ -74,7 +74,7 @@ async function main() {
                 console.log(chatInfo.permissions.can_send_basic_messages);
                 console.log(`Spamming in basic group: ${chatInfo.title}`);
                 await spammer(client, chatInfo.id, spamMessage);
-                await new Promise(resolve => setTimeout(resolve, 1000)); // 5 minutes
+                await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
 
             }
 
