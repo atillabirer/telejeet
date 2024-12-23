@@ -19,12 +19,6 @@ const client = tdl.createClient({
 })
 
 client.on('error', console.error)
-client.on('update', (update) => {
-    if (update._ === 'updateNewChat') {
-        console.log(`New chat: ${update.chat.title} (${update.chat.id})`);
-
-    }
-})
 async function main() {
     const rl = createInterface({
         output: stdout,
@@ -37,7 +31,7 @@ async function main() {
     const chatSearchChoice = await rl.question(command);
     let queryString: string;
 
-    if(chatSearchChoice === "1") {
+    if (chatSearchChoice === "1") {
         queryString = await rl.question("Enter the chat title to search for:");
     } else {
         queryString = "";
@@ -62,20 +56,34 @@ async function main() {
             if (chatInfo.type._ == "chatTypeSupergroup") {
 
                 if (!chatInfo.type.is_channel && chatInfo.permissions.can_send_basic_messages) {
-                    console.log(`Spamming in supergroup: ${chatInfo.title}`);
-                    await joiner(client, chatInfo.id, spamMessage);
+                    if (chatSearchChoice === "2") {
+                        //spam
+
+                        await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                        spammer(client, chatInfo.id, spamMessage);
+                        console.log(`Spamming in supergroup: ${chatInfo.title}`);
+
+                    } else {
+                        await joiner(client, chatInfo.id, spamMessage);
+                    }
 
 
                     //wait 300 seconds after join
-                    await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
 
                 }
             }
             if (chatInfo.type._ == "chatTypeBasicGroup") {
                 console.log(chatInfo.permissions.can_send_basic_messages);
-                console.log(`Spamming in basic group: ${chatInfo.title}`);
-                await joiner(client, chatInfo.id, spamMessage);
-                await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                if (chatSearchChoice === "2") {
+                    //spam
+
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                    spammer(client, chatInfo.id, spamMessage);
+                    console.log(`Spamming in supergroup: ${chatInfo.title}`);
+
+                } else {
+                    await joiner(client, chatInfo.id, spamMessage);
+                }
 
             }
 

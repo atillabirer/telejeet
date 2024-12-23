@@ -1,19 +1,51 @@
 export default
-`
-** Greetings. I am a skilled Web3 smart contract and full-stack JavaScript developer based in Bucharest, with a strong background in working with large startups (5 years total). My expertise lies in building decentralized applications and smart contracts, leveraging the latest blockchain technologies. I have a deep understanding of complex technical challenges and possess exceptional analytical skills, allowing me to deliver scalable, secure, and efficient solutions. Whether it's crafting responsive dApps or developing end-to-end  applications, I am passionate about driving innovation and delivering high-quality results. **
+    `
+**🚀 Ready to Launch Your Crypto Project to the Moon? 🌕**
 
-** my skills: **
+At **Wet3Dreams**, we specialize in transforming your cryptocurrency ideas into the next DexScreener top 10 moonshot. From the initial spark of an idea to the euphoria of your coin reaching new price records, we’ve got you covered every step of the way.
 
-* EVM: Solidity, Hardhat, gas optimization, contract deployment, P2E games, token sales, liquidity add/remove, wallet integration, uniswap and pancakeswap forks, mobile crypto apps in React Native
-* Solana: Anchor smart contracts (including proxy to avoid MEV), Jito shredstream and gRPC setup, pump fun sniper, raydium copy trade bot, front run bot based on shredstream (Rust), airdrop tool, volume maker for PF + raydium
-* Polkadot: Pallet and parachain development, Moonbeam XCM, Subwallet integration, Substrate, cross chain teansfers
-* COSMOS: IBC and smart contract development
-* Front-end: React, NextJS, Material UI, Tailwind, ethers.js, wallet and payments integration, Reown, mobile first design, social media login
-* Back-end: NodeJS API development, multi crypto wallet generation and management, Websockets, AWS lambda, GCP, Firebase, Oauth2, MySQL & MongoDB
-* Linux sysadmin: RPC Node setup, Docker, Ansible, trading bot setup, domain and DNS config, web server config
+### **Our Comprehensive Crypto Services:**
 
-Github: atillabirer
+🔧 **Idea & Concept Development:**  
+We turn your vision into a solid strategy, crafting a unique, market-ready cryptocurrency with a clear use case.
 
-Shoot me a message or call me (I speak Romanian and Turkish fluently also)
+🌐 **Blockchain & Token Development:**  
+Our expert developers create secure, scalable, and efficient smart contracts and tokens tailored to your goals — whether it’s for DeFi, NFTs, AI or a Web3 game.
 
+📊 **Market Research & Analysis:**  
+We conduct in-depth research to ensure your project addresses market gaps, appealing to the right audience and maximizing adoption.
+
+🚀 **Branding & Identity:**  
+From logos to full-fledged branding strategies, we make sure your crypto project stands out in a crowded marketplace with an identity that resonates. Our graphic designers are experienced in crypto-targeted design.
+
+💡 **Marketing & Community Growth:**  
+We build buzz and grow engaged communities through social media, influencers, content marketing, and paid campaigns. Our marketing experts know how to generate hype — and sustain it. We also perform guerilla marketing like airdropping to everyone who uses the Raydium contracts.
+
+💼 **Legal & Compliance Support:**  
+Navigating the regulatory landscape can be tricky. We help ensure your project complies with local and international regulations, giving you peace of mind. We have a lawtech expert at hand to help you navigate the murkey waters of crypto laws.
+
+📈 **Tokenomics & ICO/IDO Strategy:**  
+We develop sustainable tokenomics and fundraising strategies (ICO/IDO) that generate real interest and long-term value for investors.
+
+📊 **Exchange Listings & Partnerships:**  
+Our extensive network of partners and exchanges helps your cryptocurrency gain visibility, liquidity, and credibility across the market. 4 of the tokens we helped launch ended up being listed on ByBit!
+
+🚀 **Post-Launch Marketing & Support:**  
+Even after launch, we provide continuous support to help you scale, including ongoing marketing efforts, community engagement, and strategic adjustments to keep your price climbing.
+
+### **Why Choose Us?**
+
+-   **Proven Success:** Our team has helped numerous crypto projects go from concept to multi-million-dollar market caps.
+-   **Full-Service Solutions:** We handle it all – from tech development to marketing, compliance to exchange listings, we ensure everything runs smoothly.
+-   **Results-Oriented:** Our goal isn’t just to launch a project – it’s to drive growth, increase value, and watch your price moon.
+
+----------
+
+### Ready to turn your crypto dreams into reality? 🚀
+
+Let’s get started today!
+
+📩 **Contact Us** at wet3dreams.space for a free consultation.
+
+### **Wet3Dreams** – Your Crypto Project. Our Expertise. Sky’s the Limit. 🌕
 `;

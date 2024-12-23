@@ -40,6 +40,7 @@ const tdl = __importStar(require("tdl"));
 const prebuilt_tdlib_1 = require("prebuilt-tdlib");
 const promises_1 = require("readline/promises");
 const process_1 = require("process");
+const spammer_1 = __importDefault(require("./spammer"));
 const spam_template_1 = __importDefault(require("./spam_template"));
 const joiner_1 = __importDefault(require("./joiner"));
 // import TDLib types:
@@ -50,11 +51,6 @@ const client = tdl.createClient({
     apiHash: '005db574e0dbf6d7e87ed81bc234c742'
 });
 client.on('error', console.error);
-client.on('update', (update) => {
-    if (update._ === 'updateNewChat') {
-        console.log(`New chat: ${update.chat.title} (${update.chat.id})`);
-    }
-});
 async function main() {
     const rl = (0, promises_1.createInterface)({
         output: process_1.stdout,
@@ -82,17 +78,29 @@ async function main() {
             console.log("Can write:", chatInfo.permissions.can_send_basic_messages);
             if (chatInfo.type._ == "chatTypeSupergroup") {
                 if (!chatInfo.type.is_channel && chatInfo.permissions.can_send_basic_messages) {
-                    console.log(`Spamming in supergroup: ${chatInfo.title}`);
-                    await (0, joiner_1.default)(client, chatInfo.id, spamMessage);
+                    if (chatSearchChoice === "2") {
+                        //spam
+                        await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                        (0, spammer_1.default)(client, chatInfo.id, spamMessage);
+                        console.log(`Spamming in supergroup: ${chatInfo.title}`);
+                    }
+                    else {
+                        await (0, joiner_1.default)(client, chatInfo.id, spamMessage);
+                    }
                     //wait 300 seconds after join
-                    await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
                 }
             }
             if (chatInfo.type._ == "chatTypeBasicGroup") {
                 console.log(chatInfo.permissions.can_send_basic_messages);
-                console.log(`Spamming in basic group: ${chatInfo.title}`);
-                await (0, joiner_1.default)(client, chatInfo.id, spamMessage);
-                await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                if (chatSearchChoice === "2") {
+                    //spam
+                    await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                    (0, spammer_1.default)(client, chatInfo.id, spamMessage);
+                    console.log(`Spamming in supergroup: ${chatInfo.title}`);
+                }
+                else {
+                    await (0, joiner_1.default)(client, chatInfo.id, spamMessage);
+                }
             }
         }
         catch (error) {
