@@ -1,6 +1,6 @@
 export default
     `
-**🚀 Ready to Launch Your Crypto Project to the Moon? 🌕**
+** 🚀 Ready to Launch Your Crypto Project to the Moon? 🌕 **
 
 At **Wet3Dreams**, we specialize in transforming your cryptocurrency ideas into the next DexScreener top 10 moonshot. From the initial spark of an idea to the euphoria of your coin reaching new price records, we’ve got you covered every step of the way.
 

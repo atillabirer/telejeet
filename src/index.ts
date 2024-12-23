@@ -14,11 +14,12 @@ tdl.configure({ tdjson: getTdjson() })
 
 
 const client = tdl.createClient({
-    apiId: 21563988, // Your api_id
-    apiHash: '005db574e0dbf6d7e87ed81bc234c742'
+    apiId: 0, // Your api_id
+    apiHash: '' // your api hash
 })
 
 client.on('error', console.error)
+
 async function main() {
     const rl = createInterface({
         output: stdout,
