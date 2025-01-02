@@ -47,8 +47,8 @@ const joiner_1 = __importDefault(require("./joiner"));
 // import type * as Td from 'tdlib-types'
 tdl.configure({ tdjson: (0, prebuilt_tdlib_1.getTdjson)() });
 const client = tdl.createClient({
-    apiId: 21563988, // Your api_id
-    apiHash: '005db574e0dbf6d7e87ed81bc234c742'
+    apiId: 20022432, // Your api_id
+    apiHash: 'c970a1f7ae44429f7c7e8dc2ed96b32c' // your api hash
 });
 client.on('error', console.error);
 async function main() {
@@ -66,7 +66,7 @@ async function main() {
     else {
         queryString = "";
     }
-    const publicSearchRes = chatSearchChoice === "2" ? await client.invoke({ _: "getChats", limit: 300 }) :
+    const publicSearchRes = chatSearchChoice === "2" ? await client.invoke({ _: "getChats", limit: 500 }) :
         await client.invoke({ _: "searchPublicChats", query: queryString });
     console.log("total results:", publicSearchRes.total_count);
     const spamMessage = spam_template_1.default;
@@ -80,7 +80,7 @@ async function main() {
                 if (!chatInfo.type.is_channel && chatInfo.permissions.can_send_basic_messages) {
                     if (chatSearchChoice === "2") {
                         //spam
-                        await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                        await new Promise(resolve => setTimeout(resolve, 10000)); // 1 minute
                         (0, spammer_1.default)(client, chatInfo.id, spamMessage);
                         console.log(`Spamming in supergroup: ${chatInfo.title}`);
                     }
@@ -94,7 +94,7 @@ async function main() {
                 console.log(chatInfo.permissions.can_send_basic_messages);
                 if (chatSearchChoice === "2") {
                     //spam
-                    await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                    await new Promise(resolve => setTimeout(resolve, 10000)); // 1 minute
                     (0, spammer_1.default)(client, chatInfo.id, spamMessage);
                     console.log(`Spamming in supergroup: ${chatInfo.title}`);
                 }
@@ -110,4 +110,4 @@ async function main() {
     }
     await client.close();
 }
-main().catch(console.error);
+main().then((console.log)).catch(console.error);

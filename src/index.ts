@@ -14,8 +14,8 @@ tdl.configure({ tdjson: getTdjson() })
 
 
 const client = tdl.createClient({
-    apiId: 0, // Your api_id
-    apiHash: '' // your api hash
+    apiId: 20022432, // Your api_id
+    apiHash: 'c970a1f7ae44429f7c7e8dc2ed96b32c' // your api hash
 })
 
 client.on('error', console.error)
@@ -41,7 +41,7 @@ async function main() {
 
 
 
-    const publicSearchRes = chatSearchChoice === "2" ? await client.invoke({ _: "getChats", limit: 300 }) :
+    const publicSearchRes = chatSearchChoice === "2" ? await client.invoke({ _: "getChats", limit: 500 }) :
         await client.invoke({ _: "searchPublicChats", query: queryString });
 
     console.log("total results:", publicSearchRes.total_count);
@@ -60,7 +60,7 @@ async function main() {
                     if (chatSearchChoice === "2") {
                         //spam
 
-                        await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                        await new Promise(resolve => setTimeout(resolve, 10000)); // 1 minute
                         spammer(client, chatInfo.id, spamMessage);
                         console.log(`Spamming in supergroup: ${chatInfo.title}`);
 
@@ -78,7 +78,7 @@ async function main() {
                 if (chatSearchChoice === "2") {
                     //spam
 
-                    await new Promise(resolve => setTimeout(resolve, 1000)); // 1 minute
+                    await new Promise(resolve => setTimeout(resolve, 10000)); // 1 minute
                     spammer(client, chatInfo.id, spamMessage);
                     console.log(`Spamming in supergroup: ${chatInfo.title}`);
 
@@ -99,4 +99,4 @@ async function main() {
 
 }
 
-main().catch(console.error)
+main().then((console.log)).catch(console.error)
