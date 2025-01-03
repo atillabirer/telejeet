@@ -3,7 +3,7 @@ import { getTdjson } from 'prebuilt-tdlib'
 import type * as Td from 'tdlib-types';
 import { createInterface } from "readline/promises";
 import { stdin, stdout } from 'process';
-import { readFile } from 'fs/promises';
+import { readFile,appendFile } from 'fs/promises';
 import spammer from './spammer';
 import spam_template from "./spam_template";
 import joiner from './joiner';
@@ -54,6 +54,7 @@ async function main() {
             console.log("Chat title:", chatInfo.title);
             console.log("Chat type:", chatInfo.type);
             console.log("Can write:", chatInfo.permissions.can_send_basic_messages);
+	    await appendFile("dump.csv",`${chatInfo.title},${Date.now()}\n`);
             if (chatInfo.type._ == "chatTypeSupergroup") {
 
                 if (!chatInfo.type.is_channel && chatInfo.permissions.can_send_basic_messages) {
@@ -78,9 +79,11 @@ async function main() {
                 if (chatSearchChoice === "2") {
                     //spam
 
-                    await new Promise(resolve => setTimeout(resolve, 10000)); // 1 minute
+                    await new Promise(resolve => setTimeout(resolve, 3000)); // 1 minute
                     spammer(client, chatInfo.id, spamMessage);
                     console.log(`Spamming in supergroup: ${chatInfo.title}`);
+
+	    await appendFile("dump.csv",`${chatInfo.title},${Date.now()}\n`);
 
                 } else {
                     await joiner(client, chatInfo.id, spamMessage);
